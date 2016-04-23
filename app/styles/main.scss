@@ -7,6 +7,17 @@ $color-btn-text: #FFF;
 $color-btn-background: darken($color-title, 30%);
 $color-bday-text: #565656;
 
+$size-box: 14px;
+
+@mixin transition() {
+    $time: 0.8s;
+    -webkit-transition: background $time ease;
+    -moz-transition: background $time ease;
+    -ms-transition: background $time ease;
+    -o-transition: background $time ease;
+    transition: background $time ease;
+}
+
 body {
     font-family: 'Raleway','sans-serif';
 }
@@ -44,8 +55,18 @@ body {
 }
 
 .main-title {
-    text-align: center;
     margin-top: 100px;
+}
+
+h1, h3, h4 {
+    text-align: center;
+}
+
+h1 {
+    color: darken($color-title, 20%);
+}
+
+h3, h4 {
     color: $color-title;
 }
 
@@ -55,11 +76,12 @@ body {
     margin: 100px auto 0 auto;
 
     & .box {
-        width: 10px;
-        height: 10px;
+        @include transition();
+        width: $size-box;
+        height: $size-box;
         background-color: $color-default-box;
         display: inline-block;
-        margin: 0 2px;
+        margin: 2px 4px;
 
         &.active {
             background-color: $color-active-box;
