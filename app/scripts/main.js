@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-    var years = 80;
+    var years = 90;
     var weeks = 52;
     var totalWeeks = years * weeks;
     var activeClass = 'active';
