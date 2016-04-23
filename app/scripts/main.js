@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 $(document).ready(function() {
 
@@ -7,25 +7,25 @@ $(document).ready(function() {
     var totalWeeks = years * weeks;
     var activeClass = 'active';
 
-    for (var i = 0; i < totalWeeks; i++) {
-        $('#grid').append('<div class="box"><span>' + (i + 1) + '</span></div>');
+    for (var weekIdx = 0; weekIdx < totalWeeks; weekIdx++) {
+        $('#grid').append('<div class="box"><span>' + (weekIdx + 1) + '</span></div>');
     }
 
     var setActiveBoxes = function(currentWeek) {
-        $('#grid .box').each(function(i, el) {
-            if (i == currentWeek) {
+        $('#grid .box').each(function(idx, el) {
+            if (idx === currentWeek) {
                 return false;
             } else {
                 $(el).addClass(activeClass);
             }
         });
-    }
+    };
 
     var resetGrid = function() {
-        $('#grid .box').each(function(i, el) {
+        $('#grid .box').each(function(_, el) {
             $(el).removeClass(activeClass);
         });
-    }
+    };
 
     var minDate = new Date();
     minDate.setFullYear(minDate.getFullYear() - years);
@@ -35,7 +35,7 @@ $(document).ready(function() {
         selectMonths: true,
         selectYears: years,
         min: minDate,
-        max: true,
+        max: true
     });
     var picker = input.pickadate('picker');
 
@@ -53,7 +53,7 @@ $(document).ready(function() {
 
     input.on('change', function() {
         var pickedDate = $('.date-input').val();
-        if (pickedDate == undefined || pickedDate.trim() === '') {
+        if (pickedDate === undefined || pickedDate.trim() === '') {
             resetGrid();
             return;
         }
@@ -61,8 +61,8 @@ $(document).ready(function() {
         var today = new Date();
         if (!(today < bdayDate)) {
             var time = today.getTime() - bdayDate.getTime();
-            var currentWeek = Math.floor(time / (1000 * 60 * 60 * 24 * 7))
-            $('.box').each(function(i, el) { $(el).removeClass(activeClass);});
+            var currentWeek = Math.floor(time / (1000 * 60 * 60 * 24 * 7));
+            $('.box').each(function(i, el) { $(el).removeClass(activeClass); });
             setActiveBoxes(currentWeek);
         }
     });
