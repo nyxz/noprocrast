@@ -2,20 +2,34 @@
 
 $color-title: #3DABFF;
 $color-default-box: #CACACA;
+$color-default-box-text: #808080;
+$color-default-box-text-hover: darken($color-default-box-text, 15%);
 $color-active-box: darken($color-title, 15%);
+$color-active-box-text: darken($color-title, 30%);
+$color-active-box-text-hover: #FFF;
 $color-btn-text: #FFF;
 $color-btn-background: darken($color-title, 30%);
 $color-bday-text: #565656;
 
-$size-box: 14px;
+$size-box: 20px;
 
 @mixin transition() {
-    $time: 0.8s;
-    -webkit-transition: background $time ease;
-    -moz-transition: background $time ease;
-    -ms-transition: background $time ease;
-    -o-transition: background $time ease;
-    transition: background $time ease;
+    $time: 0.4s;
+    -webkit-transition: all $time ease;
+    -moz-transition: all $time ease;
+    -ms-transition: all $time ease;
+    -o-transition: all $time ease;
+    transition: all $time ease;
+}
+
+@mixin transform() {
+    $deg: 360deg;
+    $scale: 3.4;
+    -moz-transform: scale($scale) rotate($deg);
+    -webkit-transform: scale($scale) rotate($deg);
+    -o-transform: scale($scale) rotate($deg);
+    -ms-transform: scale($scale) rotate($deg);
+    transform: scale($scale) rotate($deg);
 }
 
 body {
@@ -73,18 +87,38 @@ h3, h4 {
 .grid {
     width: 80%;
     min-height: 300px;
-    margin: 100px auto 0 auto;
+    margin: 100px auto;
 
     & .box {
         @include transition();
         width: $size-box;
         height: $size-box;
         background-color: $color-default-box;
+        color: $color-default-box-text;
         display: inline-block;
         margin: 2px 4px;
 
+        &:hover {
+            @include transform();
+            background: darken($color-default-box, 20%);
+            color: $color-default-box-text-hover;
+        }
+
         &.active {
             background-color: $color-active-box;
+            color: $color-active-box-text;
+
+            &:hover {
+                background: darken($color-active-box, 20%);
+                color: $color-active-box-text-hover;
+            }
+        }
+
+        & span {
+            font-size: 8px;
+            display: table;
+            margin: 0 auto;
+            padding-top: 25%;
         }
     }
 }

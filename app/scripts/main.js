@@ -8,7 +8,7 @@ $(document).ready(function() {
     var activeClass = 'active';
 
     for (var i = 0; i < totalWeeks; i++) {
-        $('#grid').append('<div class="box"></div>');
+        $('#grid').append('<div class="box"><span>' + (i + 1) + '</span></div>');
     }
 
     var setActiveBoxes = function(currentWeek) {
